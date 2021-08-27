@@ -34,6 +34,8 @@ class Article(models.Model):
 
 ## User
 class User(AbstractUser):
+	avater = models.ImageField(upload_to='blog/static/others/', blank=False, default='blog/static/category_cover/default.png')
+	github_url = models.URLField(blank=True)
 	intro = models.TextField(blank=True, default='GuessWhoAmI!')
 
 
