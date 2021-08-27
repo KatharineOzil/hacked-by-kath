@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
-from django.contrib.auth.models import *
+from django.contrib.auth.models import AbstractUser
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 import sys
@@ -19,7 +19,7 @@ class Category(models.Model):
 
 
 ## 文章详情
-class Articles(models.Model):
+class Article(models.Model):
 	#cover = models.ImageField(upload_to='blog/static/cover/', blank=False)
 	title = models.CharField(max_length=100)
 	create_time = models.DateField(default=timezone.now)
@@ -33,7 +33,7 @@ class Articles(models.Model):
 
 
 ## User
-class User(AbstractBaseUser):
+class User(AbstractUser):
 	intro = models.TextField(blank=True, default='GuessWhoAmI!')
 
 
