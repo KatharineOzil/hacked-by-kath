@@ -19,6 +19,7 @@ class Category(models.Model):
 
 
 ## 文章详情
+
 class Article(models.Model):
 	#cover = models.ImageField(upload_to='blog/static/cover/', blank=False)
 	title = models.CharField(max_length=100)
@@ -27,7 +28,10 @@ class Article(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	content = models.TextField()
 	visible = models.BooleanField(default=True)
-	
+	attachment = models.FileField(upload_to='blog/static/content/', blank=True) 
+	#TODO：upload to different folders according to the categories
+	#TODO：FileField vs. FilePathField
+
 	def __str__(self):
 		return self.title
 

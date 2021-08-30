@@ -22,15 +22,22 @@ def index(request):
 def category(request, category):
 	result = {}
 	try:
-		post = Article.objects.filter(category=category).order_by('-update_time')
+		post = Article.objects.filter(category=category, visible=True).order_by('-update_time')
 		result.update({'result': post})
 	except Article.DoesNotExist:
 		result.update({'result': 'No Result!'})
 	return render(request, 'blog/category.html', result)
 
 # 文章详情页
-def detail(request, id):
-	pass
+def detail(request, title):
+	try:
+		post = Article.objects.get(title=title)
+		if post.visible == True:
+			return render(request, 'blog/article.html', {'post': post})
+		else:
+			return render_to_response('blog/404.html', {})
+	except Article.DoesNotExist:
+		return render_to_response('blog/404.html', {})
 
 # 个人简介
 def aboutme(request):
