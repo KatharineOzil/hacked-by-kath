@@ -24,7 +24,7 @@ class Article(models.Model):
 	#cover = models.ImageField(upload_to='blog/static/cover/', blank=False)
 	title = models.CharField(max_length=100)
 	create_time = models.DateField(default=timezone.now)
-	update_time = models.DateField(default=timezone.now)
+	update_time = models.DateField()
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	content = models.TextField()
 	visible = models.BooleanField(default=True)
@@ -46,3 +46,12 @@ class User(AbstractUser):
 ## 评论(待定)
 class Comment(models.Model):
 	pass
+
+## TODO List
+class Todo(models.Model):
+	title = models.TextField()
+	create_time = models.DateField(default=timezone.now)
+	is_done = models.BooleanField(default=False)
+	finish_time = models.DateField()
+
+

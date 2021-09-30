@@ -1,4 +1,4 @@
-from django.shortcuts import *
+from django.shortcuts import render
 from django.http import *
 from .models import *
 
@@ -10,13 +10,15 @@ from .models import *
 
 # 主页（近期文章）	
 def index(request):
-	result = {}
-	try:
-		post = Article.objects.filter(visible=True).order_by('-update_time')[0: 10]
-		result.update({'result': post})
-	except Article.DoesNotExist:
-		result.update({'result': 'No Result!'})
-	return render(request, 'blog/index.html', result)
+#	result = {}
+#	try:
+#		post = Article.objects.filter(visible=True).order_by('-update_time')[0: 10]
+#		result.update({'result': post})
+#	except Article.DoesNotExist:
+#		result.update({'result': 'No Result!'})
+#	return render(request, 'blog/index.html', result)
+	return render(request, 'blog/index.html')
+
 
 # 文章页（列表）
 def category(request, category):
