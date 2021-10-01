@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<main class="mdl-layout__content">
+    <div class="mdl-grid portfolio-max-width">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">About Me</h2>
+            </div>
+            <div class="mdl-card__media">
+                <img class="article-image" src='{% static "/image/aboutme.jpeg" %}' border="0" alt="">
+            </div>
+            <div class="mdl-grid portfolio-copy">
+                {% if context %}
+                {% for context in users %}
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">
+                        {{ context.username }}
+                    </h3>
+                    <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                        <p>{{ context.intro }}</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
+                        <p>Email: <a href="mailto:{{ user.email }}">{{ context.github_url }}</a></p>
+                    </div>                    
+                {% endfor %}
+                {% else %}
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">
+                        No Result!
+                    </h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}	
