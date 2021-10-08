@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import *
 from .models import *
-
+import markdown
 
 # Create your views here.
 
@@ -35,6 +35,8 @@ def detail(request, title):
 	try:
 		post = Article.objects.get(title=title)
 		if post.visible == True:
+			# 将markdown语法渲染成html样式(包括缩写表格和语法高亮等常用扩展)https://www.dusaiphoto.com/article/20/
+			post.content = markdown.markdown(post.content,extensions=['markdown.extensions.extra','markdown.extensions.codehilite',])
 			return render(request, 'blog/article.html', {'post': post})
 		else:
 			return render_to_response('blog/404.html', {})
