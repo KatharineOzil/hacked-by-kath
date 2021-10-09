@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import *
-from .models import *
+from blog.models import User
 import markdown
 
 # Create your views here.
@@ -46,6 +46,5 @@ def detail(request, title):
 # 个人简介
 def aboutme(request):
 	personal = User.objects.all().values('username', 'intro', 'github_url')
-	context = {'personal' : personal}
-	return render(request, 'blog/aboutme.html', context)
+	return render(request, 'blog/aboutme.html', {'personal' : personal})
 
