@@ -12,17 +12,16 @@
             </div>-->
             <div class="mdl-grid portfolio-copy">
                 {% if personal %}
-                {% for users in  personal %}
 <!--                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">
                         {{ users.username }}
                     </h3>-->
                     <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
-                        <p>{{ users.intro }}</p>
+                        <p>{{ personal.intro|safe }}</p>
+
                     </div>
                     <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
-                        <p>GitHub: <a href="mailto:{{ user.email }}">{{ users.github_url }}</a></p>
+                        <p>GitHub: <a href="mailto:{{ user.email }}">{{ personal.github_url }}</a></p>
                     </div>                    
-                {% endfor %}
                 {% else %}
                     <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">
                         No Result!

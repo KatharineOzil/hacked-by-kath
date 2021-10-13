@@ -17,13 +17,18 @@ from django.urls import include, path
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import staticfiles
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'blog/', include('blog.urls')),
+    path(r'mdeditor/', include('mdeditor.urls'))
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #urlpatterns += staticfiles_urlpatterns()
 #handler404 = 'blog.views.page_not_found'
 #handler500 = 'blog.views.page_error'

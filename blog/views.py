@@ -45,6 +45,9 @@ def detail(request, title):
 
 # 个人简介
 def aboutme(request):
-	personal = User.objects.all().values('username', 'intro', 'github_url')
-	return render(request, 'blog/aboutme.html', {'personal' : personal})
+	context = {}
+	personal = User.objects.get()
+	personal.intro = markdown.markdown(personal.intro.replace('\r\n','\n'), extensions=['markdown.extensions.extra','markdown.extensions.codehilite','markdown.extensions.toc'])
+	context['personal'] = personal
+	return render(request, 'blog/aboutme.html', context)
 
