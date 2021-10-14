@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
    path('', views.index, name='index'),
-   path(r'category', views.category, name='category'),
+   path(r'archive', views.archive, name='archive'),
    path(r'article/(?P<id>\d+)/$', views.detail, name='detail'),
    path(r'aboutme', views.aboutme, name='aboutme'),
 ]

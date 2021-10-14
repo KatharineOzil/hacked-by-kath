@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<main class="mdl-layout__content">
+    <div class="mdl-grid portfolio-max-width">
+            {% if category %}
+            {% for name in category %}
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">{{ name.category }}</h2>
+            </div>
+                {% for title in article %}
+                    {% if title.category.category == name.category %}
+                <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+                    <a href="{% url 'detail' id=title.title %}">
+                        {{ title.title }} <div style="float:right;">{{ title.update_time }}</div>
+                    </a>
+                </div>
+                    {% endif %}
+                    {% endfor %}
+        </div>
+            {% endfor %}
+            {% endif %}
+    </div>
+</main>
+{% endblock %}

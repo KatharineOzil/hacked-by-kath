@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import *
-from blog.models import User
+from blog.models import User, Article, Category, Todo
 import markdown
 
 # Create your views here.
@@ -20,7 +20,19 @@ def index(request):
 	return render(request, 'blog/index.html')
 
 
-# 文章页（列表）
+# 文章页（列表）；archive页面包括所有文章（按照category排列）。TODO：category可点击进入每个分类下的文章
+def archive(request):
+	return_result = {}
+	category = Category.objects.all()
+	return_result.update({'category': category})
+	try:
+		post = Article.objects.filter(visible=True).order_by('-update_time')
+		return_result.update({'article': post})
+	except Article.DoesNotExist:
+		return_result.update({'article': 'No Result!'})
+	return render(request, 'blog/archive.html', return_result)
+
+# category页 (pass)
 def category(request, category):
 	result = {}
 	try:
@@ -33,11 +45,13 @@ def category(request, category):
 # 文章详情页
 def detail(request, title):
 	try:
+		context = {}
 		post = Article.objects.get(title=title)
 		if post.visible == True:
 			# 将markdown语法渲染成html样式(包括缩写表格和语法高亮等常用扩展)https://www.dusaiphoto.com/article/20/
-			post.content = markdown.markdown(post.content,extensions=['markdown.extensions.extra','markdown.extensions.codehilite',])
-			return render(request, 'blog/article.html', {'post': post})
+			post.content = markdown.markdown(post.content.replace('\r\n','\n'), extensions=['markdown.extensions.extra','markdown.extensions.codehilite','markdown.extensions.toc'])
+			context['post'] = post
+			return render(request, 'blog/article.html', context)
 		else:
 			return render_to_response('blog/404.html', {})
 	except Article.DoesNotExist:

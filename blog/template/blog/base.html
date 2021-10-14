@@ -50,14 +50,14 @@
             <div class="mdl-layout__header-row portfolio-logo-row">
                 <span class="mdl-layout__title">
                     <div class="portfolio-logo"></div>
-                    <span class="mdl-layout__title"><strong>Katharine Who You Are</strong></span>
+                    <span class="mdl-layout__title"><strong><a href={% url 'aboutme' %}>Katharine Who You Are</a ></strong></span>
                 </span>
             </div>
 
             <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                     <a class="mdl-navigation__link  {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a >
-                    <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'category' %}>Article</a >                    
+                    <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'archive' %}>Article</a >                    
                     <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a >
                     <a class="mdl-navigation__link {% if request.path == '/admin' %}is-active{% endif %}" href="admin" target="_blank">Admin</a >
 
@@ -73,7 +73,7 @@
                 </span>
             <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
                 <a class="mdl-navigation__link {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a>
-                <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'category' %}>Article</a >
+                <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'archive' %}>Article</a >
                 <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a >
                 <a class="mdl-navigation__link {% if request.path == '/admin' %}is-active{% endif %}" href="admin" target="_blank">Admin</a>
             </nav>
