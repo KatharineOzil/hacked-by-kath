@@ -1,114 +1,24 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
+
 <main class="mdl-layout__content">
-    <div class="mdl-grid portfolio-max-width portfolio-contact">
+    <div class="mdl-grid portfolio-max-width">
         <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+            {% if post %}
             <div class="mdl-card__title">
-                <h2 class="mdl-cell mdl-cell--12-col mdl-typography--headline">{{ post.title }}</h2>
-                <div class="mdl-cell mdl-cell--8-col mdl-card__supporting-text no-padding ">
-                <p>{{ post.author}} posted at {{ post.created_time }}</p>
-                <p>Category: <a class="category" href="/category/{{ post.category.id }}" %}>{{ post.category }}</a> </p>
+                <h1 class="mdl-cell mdl-cell--12-col mdl-typography--headline">{{ post.title }}</h1></div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+                <div>
+                    <span>{{ post.update_time }}</span>
+                    Archived in <strong>{{ post.category.category }}</strong>
                 </div>
             </div>
-            <center>
-                <div class="mdl-card__media mdl-cell--6-col">
-                    <img class="article-image" src='/{{ post.cover }}' border="0" alt="">
-                </div>
-            </center>
-            <div class="mdl-card__supporting-text">
-               {{ post.content }}
+
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+                {{ post.content|safe }}
             </div>
-<!--             <div class="mdl-grid portfolio-copy">
-                <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Comment</h3>
-                {% if comments %}
-                <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
-                    <ul class="demo-list-icon mdl-list">
-                        {% recursetree comments %}
-                            <li class="mdl-list__item mdl-list__item--three-line" c_id="{{ node.id }}">
-                                <span class="mdl-list__item-primary-content">
-                                    <i class="material-icons mdl-list__item-avatar">person</i>                            
-                                    <span>{{ node.content }}</span>
-                                    <span class="mdl-list__item-text-body">
-                                        Posted by <U><strong>{{ node.author }}</strong></U> at {{ node.created_time }}
-                                    </span>
-                                </span>
-                
-                                {% if node.parent == NULL %}
-                                    <span class="mdl-list__item-secondary-content">
-                                        <button type="button" class="mdl-button mdl-js-button mdl-button--primary reply_c"> 
-                                            Reply
-                                        </button>
-                                    </span>
-                                {% endif %}
-                                
-                                {% if not node.is_leaf_node %}
-                                    <li><ul>{{ children }}</ul></li>
-                                {% endif %}
-                            </li>
-                        {% endrecursetree %}
-                    </ul>
-                </div>
-                {% else %}
-                <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text no-padding ">
-                    <p>No Comment!</p>
-                </div>
-                {% endif %}
-
-                <div class="mdl-card__supporting-text">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="add" type="button">
-                        Add Comment
-                    </button>
-                </div>
-
-                <div class="mdl-card__supporting-text" id='add_comment' style="display:none">
-                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Add Comment</h3>
-                    <form action="." method="post">
-                        {% csrf_token %}
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="id_{{ form.author.name }}" name="{{ form.author.name }}" value="{% if form.author.value != None %}{{ form.author.value }}{% endif %}">
-                            <label class="mdl-textfield__label" for="id_{{ form.author.name }}">Name</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="id_{{ form.email.name }}" name="{{ form.email.name }}" value="{% if form.email.value != None %}{{ form.email.value }}{% endif %}" >
-                            <label class="mdl-textfield__label" for="id_{{ form.email.name }}">Email</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" rows="5" id="id_{{ form.content.name }}" name="{{ form.content.name }}" value="{% if form.content.value != None %}{{ form.content.value }}{% endif %}">
-                            <label class="mdl-textfield__label" for="id_{{ form.content.name }}">Comment</label>
-                        </div>
-                        <center>
-                            <input type="submit" value="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" name='comment' onclick="return checkForm(this);"/>   
-                            <input type="button" value="cancel" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" name='cancelAddcom' onclick="return cancelAddcomment();"/>
-                        </center>
-                    </form>
-                </div>
-
-               <div class="mdl-card__supporting-text reply_comment" style="display:none" id="reply_comment">
-                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Reply</h3>
-                    {{ node.id }}
-                    <form action="." method="post">
-                        {% csrf_token %}
-                        <input type="text" id="comment_id" name="{{ replyform.parent.name }}" value="" hidden>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="id_{{ replyform.author.name }}" name="{{ replyform.author.name }}" value="{% if replyform.author.value != None %}{{ replyform.author.value }}{% endif %}">
-                            <label class="mdl-textfield__label" for="id_{{ replyform.author.name }}">Name</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                             <input class="mdl-textfield__input" type="text" id="id_{{ replyform.email.name }}" name="{{ replyform.email.name }}" value="{% if replyform.email.value != None %}{{ replyform.email.value }}{% endif %}" >
-                            <label class="mdl-textfield__label" for="id_{{ replyform.email.name }}">Email</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" rows="5" id="id_{{ replyform.content.name }}" name="{{ replyform.content.name }}" value="{% if replyform.content.value != None %}{{ replyform.content.value }}{% endif %}">
-                            <label class="mdl-textfield__label" for="id_{{ replyform.content.name }}">Comment</label>
-                        </div>
-                        <center>
-                            <input type="submit" value="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" name='reply' onclick="return checkForm(this);"/>   
-                            <input type="button" value="cancel" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" name='cancelRpl'  onclick="return cancelReply();"/>
-                        </center>
-                    </form>
-                </div>-->
-            </div>
+            {% endif %}
         </div>
     </div>
 </main>

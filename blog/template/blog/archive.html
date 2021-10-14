@@ -12,7 +12,7 @@
                 {% for title in article %}
                     {% if title.category.category == name.category %}
                 <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-                    <a href="{% url 'detail' id=title.title %}">
+                    <a href="{% url 'detail' id=title.id %}">
                         {{ title.title }} <div style="float:right;">{{ title.update_time }}</div>
                     </a>
                 </div>

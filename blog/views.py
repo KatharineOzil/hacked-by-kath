@@ -43,10 +43,10 @@ def category(request, category):
 	return render(request, 'blog/category.html', result)
 
 # 文章详情页
-def detail(request, title):
+def detail(request, id):
 	try:
 		context = {}
-		post = Article.objects.get(title=title)
+		post = Article.objects.get(id=id)
 		if post.visible == True:
 			# 将markdown语法渲染成html样式(包括缩写表格和语法高亮等常用扩展)https://www.dusaiphoto.com/article/20/
 			post.content = markdown.markdown(post.content.replace('\r\n','\n'), extensions=['markdown.extensions.extra','markdown.extensions.codehilite','markdown.extensions.toc'])
