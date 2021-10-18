@@ -23,11 +23,13 @@ def index(request):
 # 文章页（列表）；archive页面包括所有文章（按照category排列）。TODO：category可点击进入每个分类下的文章
 def archive(request):
 	return_result = {}
-	category = Category.objects.all()
-	return_result.update({'category': category})
+#	category = Category.objects.all()
+#	return_result.update({'category': category})
 	try:
 		post = Article.objects.filter(visible=True).order_by('-update_time')
 		return_result.update({'article': post})
+		category = Article.objects.filter(visible=True).order_by('category').distinct()
+		return_result.update({'category': category})
 	except Article.DoesNotExist:
 		return_result.update({'article': 'No Result!'})
 	return render(request, 'blog/archive.html', return_result)

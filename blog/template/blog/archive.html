@@ -3,24 +3,25 @@
 {% block content %}
 <main class="mdl-layout__content">
     <div class="mdl-grid portfolio-max-width">
+
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
             {% if category %}
             {% for name in category %}
-        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">{{ name.category }}</h2>
             </div>
                 {% for title in article %}
-                    {% if title.category.category == name.category %}
+                    {% if title.category.category == name.category.category %}
                 <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
                     <a href="{% url 'detail' id=title.id %}">
                         {{ title.title }} <div style="float:right;">{{ title.update_time }}</div>
                     </a>
                 </div>
                     {% endif %}
-                    {% endfor %}
-        </div>
+                {% endfor %}
             {% endfor %}
             {% endif %}
+        </div>
     </div>
 </main>
 {% endblock %}
