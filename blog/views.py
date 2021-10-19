@@ -10,14 +10,15 @@ import markdown
 
 # 主页（近期文章）	
 def index(request):
-#	result = {}
-#	try:
-#		post = Article.objects.filter(visible=True).order_by('-update_time')[0: 10]
-#		result.update({'result': post})
-#	except Article.DoesNotExist:
-#		result.update({'result': 'No Result!'})
-#	return render(request, 'blog/index.html', result)
-	return render(request, 'blog/index.html')
+	result = {}
+	try:
+		post = Article.objects.filter(visible=True).order_by('-update_time')[0:5]
+		result.update({'article': post})
+		#category = Article.objects.filter(visible=True).order_by('category').distinct()
+		#return_result.update({'category': category})
+	except Article.DoesNotExist:
+		result.update({'article': 'No Result!'})
+	return render(request, 'blog/index.html', result)
 
 
 # 文章页（列表）；archive页面包括所有文章（按照category排列）。TODO：category可点击进入每个分类下的文章

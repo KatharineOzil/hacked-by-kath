@@ -27,6 +27,7 @@ class Article(models.Model):
 	create_time = models.DateField(default=timezone.now)
 	update_time = models.DateField()
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
+	abstract = models.TextField(blank=True)
 	content = MDTextField()
 	visible = models.BooleanField(default=True)
 	attachment = models.FileField(upload_to='blog/static/content/', blank=True) 
