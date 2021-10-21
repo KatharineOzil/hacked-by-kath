@@ -26,11 +26,14 @@ def archive(request):
 	return_result = {}
 #	category = Category.objects.all()
 #	return_result.update({'category': category})
+	category_distinct = []
 	try:
 		post = Article.objects.filter(visible=True).order_by('-update_time')
 		return_result.update({'article': post})
-		category = Article.objects.filter(visible=True).order_by('category').distinct()
-		return_result.update({'category': category})
+		category = list(Article.objects.filter(visible=True).values_list("category__category").distinct())
+		for index in range(len(category)):
+			category_distinct.append(str(category[index]).replace(',','').replace("'","").replace('(','').replace(')',''))
+		return_result.update({'category': category_distinct})
 	except Article.DoesNotExist:
 		return_result.update({'article': 'No Result!'})
 	return render(request, 'blog/archive.html', return_result)
