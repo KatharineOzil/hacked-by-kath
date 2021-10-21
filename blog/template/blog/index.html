@@ -7,9 +7,9 @@
     <div class="demo-blog__posts mdl-grid">
     <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
         <div class="mdl-grid portfolio-max-width">
-            <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
                 {% if article %}
                     {% for title in article %}
+            <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
                 <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
                     <div class="mdl-card__media mdl-color-text--grey-50">
                     <center><h4><a href="{% url 'detail' id=title.id %}">{{ title.title }}</a></h4></center>
@@ -24,10 +24,9 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
                     {% endfor %}
                 {% endif %}
-            </div>
         </div>
     </div>
     </div>
