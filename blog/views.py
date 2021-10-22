@@ -71,3 +71,8 @@ def aboutme(request):
 	context['personal'] = personal
 	return render(request, 'blog/aboutme.html', context)
 
+def page_not_found(request, exception):
+	return render(request, 'blog/404.html')
+
+def server_error(request):
+	return render(request, 'blog/500.html')

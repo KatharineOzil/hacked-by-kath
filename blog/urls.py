@@ -8,4 +8,6 @@ urlpatterns = [
    path(r'archive', views.archive, name='archive'),
    path(r'article/(?P<id>\d+)/$', views.detail, name='detail'),
    path(r'aboutme', views.aboutme, name='aboutme'),
+   path(r'404', views.page_not_found, name='404')
 ]
+

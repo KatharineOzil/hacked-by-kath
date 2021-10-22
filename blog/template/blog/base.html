@@ -59,7 +59,6 @@
                     <a class="mdl-navigation__link  {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a >
                     <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'archive' %}>Article</a >                    
                     <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a >
-                    <a class="mdl-navigation__link {% if request.path == '/admin' %}is-active{% endif %}" href="admin" target="_blank">Admin</a >
                 </nav>
             </div>
 
@@ -74,7 +73,6 @@
                 <a class="mdl-navigation__link {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a>
                 <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'archive' %}>Article</a >
                 <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a >
-                <a class="mdl-navigation__link {% if request.path == '/admin' %}is-active{% endif %}" href="admin" target="_blank">Admin</a>
             </nav>
         </div>
 

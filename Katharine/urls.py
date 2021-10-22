@@ -19,16 +19,21 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import staticfiles
 from django.conf import settings
 from django.conf.urls.static import static
+from blog import views
+from django.conf.urls import handler404, handler500
+
 
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'blog/', include('blog.urls')),
-    path(r'mdeditor/', include('mdeditor.urls'))
+    path(r'', include('blog.urls')),
+    path(r'mdeditor/', include('mdeditor.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#urlpatterns += staticfiles_urlpatterns()
-#handler404 = 'blog.views.page_not_found'
-#handler500 = 'blog.views.page_error'
+urlpatterns += staticfiles_urlpatterns()
+
+handler404 = 'blog.views.page_not_found'
+handler500 = 'blog.views.server_error'
+
