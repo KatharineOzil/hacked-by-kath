@@ -76,3 +76,9 @@ def page_not_found(request, exception):
 
 def server_error(request):
 	return render(request, 'blog/500.html')
+
+def page_forbidden(request, exception):
+	return render(request, 'blog/403.html')
+
+def bad_gateway(request):
+	return render(request, 'blog/502.html')

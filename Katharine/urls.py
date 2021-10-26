@@ -21,13 +21,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from blog import views
 from django.conf.urls import handler404, handler500
-
+from django.conf.urls import url
+from django.views import static
 
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'', include('blog.urls')),
     path(r'mdeditor/', include('mdeditor.urls')),
+    url(r'^static/(?P<path>.*)$', static.serve,
+      {'document_root': settings.STATIC_ROOT}, name='static'),
 ]
 
 if settings.DEBUG:
@@ -35,5 +38,7 @@ if settings.DEBUG:
 urlpatterns += staticfiles_urlpatterns()
 
 handler404 = 'blog.views.page_not_found'
+handler403 = 'blog.views.page_forbidden'
 handler500 = 'blog.views.server_error'
+handler502 = 'blog.views.bad_gateway'
 
