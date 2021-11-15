@@ -3,3 +3,5 @@
 db.sqlite3
 *.pyc
 ./content/
+./media/
+./blog/media/
