@@ -10,3 +10,7 @@ Time to come back
 + all articles will be shown in archive page which is classified by category √ - hidden
 + In archive page, the category canbe clicked
 + flexible footer + footer icons
+
+## ref
+
+[django-mdeditor](https://github.com/pylixm/django-mdeditor)

@@ -24,13 +24,14 @@ from django.conf.urls import handler404, handler500
 from django.conf.urls import url
 from django.views import static
 
-
 urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'', include('blog.urls')),
     path(r'mdeditor/', include('mdeditor.urls')),
     url(r'^static/(?P<path>.*)$', static.serve,
       {'document_root': settings.STATIC_ROOT}, name='static'),
+    url(r'^media/(?P<path>.*)$', static.serve,
+      {'document_root': settings.MEDIA_ROOT}, name='media'),
 ]
 
 if settings.DEBUG:
