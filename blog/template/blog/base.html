@@ -57,8 +57,8 @@
             <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
 <!--                    <a class="mdl-navigation__link  {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a >-->
-                    <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'archive' %}>Article</a >                    
-                    <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a >
+                    <a class="mdl-navigation__link  {% if request.path == '/archive' %}is-active{% endif %}" href={% url 'archive' %}>Article</a>                    
+                    <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a>
                 </nav>
             </div>
 
@@ -71,8 +71,8 @@
                 </span>
             <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
 <!--                <a class="mdl-navigation__link {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a>-->
-                <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'archive' %}>Article</a >
-                <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a >
+                <a class="mdl-navigation__link  {% if request.path == '/archive' %}is-active{% endif %}" href={% url 'archive' %}>Article</a>
+                <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a>
             </nav>
         </div>
 
