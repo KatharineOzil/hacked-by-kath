@@ -56,7 +56,7 @@
 
             <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
                 <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link  {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a >
+<!--                    <a class="mdl-navigation__link  {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a >-->
                     <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'archive' %}>Article</a >                    
                     <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a >
                 </nav>
@@ -70,7 +70,7 @@
                     <span class="mdl-layout__title"><strong>Katharine Who You Are</strong></span>
                 </span>
             <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                <a class="mdl-navigation__link {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a>
+<!--                <a class="mdl-navigation__link {% if request.path == '/index' or request.path == '/' %}is-active{% endif %}" href={% url 'index' %}>Home</a>-->
                 <a class="mdl-navigation__link  {% if request.path == '/category' %}is-active{% endif %}" href={% url 'archive' %}>Article</a >
                 <a class="mdl-navigation__link  {% if request.path == '/aboutme' %}is-active{% endif %}" href={% url 'aboutme' %}>About Me</a >
             </nav>
@@ -79,6 +79,7 @@
             {% block content %}
 
             {% endblock %}
+<!--            
     <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer__left-section">
             <div class="mdl-logo">Hacked by Katharine</div>
@@ -87,13 +88,13 @@
             <button class="mdl-mini-footer--social-btn social-btn social-btn__twitter">
               <span class="visuallyhidden">Twitter</span>
             </button>
-            <button class="mdl-mini-footer--social-btn social-btn social-btn__blogger">
-              <span class="visuallyhidden">Facebook</span>
+            <button class="mdl-mini-footer--social-btn social-btn social-btn__blogger" onclick="window.location.href='https://www.facebook.com/kathrine.wong.545'">
+                <span class="visuallyhidden">Facebook</span>
             </button>
-            <button class="mdl-mini-footer--social-btn social-btn social-btn__gplus">
-              <span class="visuallyhidden">Google Plus</span>
+            <button class="mdl-mini-footer--social-btn social-btn social-btn__github">
+              <span class="visuallyhidden">GitHub</span>
             </button>
-        </div>
+        </div>-->
 <!--        <div class="mdl-mini-footer--right-section">
             <button class="mdl-mini-footer--social-btn social-btn__share">
               <i class="material-icons" role="presentation">share</i>

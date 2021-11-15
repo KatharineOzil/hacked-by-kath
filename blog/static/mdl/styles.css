@@ -662,6 +662,9 @@ body .demo-blog {
 .social-btn__gplus {
   background-image: url('https://www.gstatic.com/images/icons/material/system/2x/post_gplus_black_24dp.png');
 }
+.social-btn__github {
+  background-image: url('image/github.svg');
+}
 .social-btn__share {
   color: rgba(0, 0, 0, 0.54);
   background: transparent;
