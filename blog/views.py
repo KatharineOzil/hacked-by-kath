@@ -28,9 +28,9 @@ def archive(request):
 #	return_result.update({'category': category})
 	category_distinct = []
 	try:
-		post = Article.objects.filter(visible=True).order_by('-update_time')
+		post = Article.objects.filter(visible=True).order_by('-create_time')
 		return_result.update({'article': post})
-		category = list(Article.objects.filter(visible=True).values_list("category__category").distinct())
+		category = list(Article.objects.filter(visible=True).values_list("category__category").distinct().order_by('-create_time'))
 		for index in range(len(category)):
 			category_distinct.append(str(category[index]).replace(',','').replace("'","").replace('(','').replace(')',''))
 		return_result.update({'category': category_distinct})
