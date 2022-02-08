@@ -40,10 +40,10 @@ def archive(request):
 	return render(request, 'blog/archive.html', return_result)
 
 # category页 (pass)
-def category(request, category):
+def category(request, id):
 	result = {}
 	try:
-		post = Article.objects.filter(category=category, visible=True).order_by('-update_time')
+		post = Article.objects.filter(category=id, visible=True).order_by('-update_time')
 		result.update({'result': post})
 	except Article.DoesNotExist:
 		result.update({'result': 'No Result!'})

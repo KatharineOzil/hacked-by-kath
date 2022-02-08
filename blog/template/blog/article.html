@@ -11,7 +11,7 @@
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
                 <div>
                     <span>{{ post.update_time }}</span>
-                    Archived in <strong>{{ post.category.category }}</strong>
+                    Archived in <strong><a href="{% url 'category' id=post.category.id %}">{{ post.category.category }}</a></strong>
                 </div>
             </div>
 

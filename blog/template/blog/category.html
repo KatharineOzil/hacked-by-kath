@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<main class="mdl-layout__content">
+    <div class="mdl-grid portfolio-max-width">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+            {% for title in result %}    
+                {% if forloop.first %}        
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">{{ title.category.category }}</h2>
+                </div>
+                {% endif %}
+            {% endfor %}
+            {% for title in result %}
+                <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+                    <a href="{% url 'detail' id=title.id %}">
+                        {{ title.title }} <div style="float:right;">{{ title.update_time }}</div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}
